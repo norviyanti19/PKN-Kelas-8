@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pancasila dalam Kehidupan Bangsaku - Kelas VIII SMP</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#d32f2f">
+</head>
+<body>
+
+  <!-- Header / Navigation Bar -->
+  <header class="app-header">
+    <div class="header-content">
+      <span class="logo">🇮🇩 PancasilaEdu</span>
+      <div class="user-badge" id="userDisplay" style="display: none;">
+        👤 <span id="displayName">Siswa</span> (<span id="displayClass">8A</span>)
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. HALAMAN PEMBUKA -->
+    <section id="sec-home" class="card active">
+      <div class="hero-banner">
+        <div class="hero-symbol">🦅</div>
+        <h1>Pancasila dalam Kehidupan Bangsaku</h1>
+        <p class="subtitle">Mata Pelajaran: Pendidikan Pancasila | Kelas VIII SMP</p>
+      </div>
+
+      <div class="cp-box">
+        <h3>🎯 Capaian Pembelajaran:</h3>
+        <p>"Peserta didik mampu menerapkan nilai-nilai Pancasila dalam kehidupan sehari-hari."</p>
+      </div>
+
+      <form id="formStudent" onsubmit="startApp(event)" class="form-group">
+        <label for="studentName"><strong>Nama Lengkap:</strong></label>
+        <input type="text" id="studentName" required placeholder="Masukkan nama lengkapmu..." class="input-field">
+        
+        <label for="studentClass"><strong>Kelas:</strong></label>
+        <select id="studentClass" required class="input-field">
+          <option value="">-- Pilih Kelas --</option>
+          <option value="VIII-A">VIII - A</option>
+          <option value="VIII-B">VIII - B</option>
+          <option value="VIII-C">VIII - C</option>
+          <option value="VIII-D">VIII - D</option>
+        </select>
+        
+        <button type="submit" class="btn btn-primary btn-block">🚀 Mulai Pembelajaran</button>
+      </form>
+    </section>
+
+    <!-- 2. HALAMAN TUJUAN PEMBELAJARAN -->
+    <section id="sec-objectives" class="card hidden">
+      <h2>🎯 Tujuan Pembelajaran</h2>
+      <p>Setelah mengikuti pembelajaran interaktif ini, kamu diharapkan mampu:</p>
+      <ul class="checklist-list">
+        <li>✅ Menjelaskan makna nilai-nilai Pancasila secara tepat.</li>
+        <li>✅ Mengidentifikasi contoh penerapan setiap sila Pancasila dalam kehidupan sehari-hari.</li>
+        <li>✅ Menganalisis perilaku yang sesuai dan tidak sesuai dengan Pancasila.</li>
+        <li>✅ Menunjukkan sikap positif yang mencerminkan nilai-nilai Pancasila.</li>
+        <li>✅ Menerapkan nilai Pancasila di rumah, sekolah, masyarakat, dan berbangsa.</li>
+      </ul>
+      <button onclick="navigateTo('sec-materials')" class="btn btn-success btn-block">Lanjut ke Materi Interaktif ➔</button>
+    </section>
+
+    <!-- 3. MATERI INTERAKTIF -->
+    <section id="sec-materials" class="card hidden">
+      <h2>📖 Materi Interaktif Pancasila</h2>
+      <p>Klik kartu sila di bawah ini untuk mempelajari makna dan penerapannya:</p>
+
+      <div class="grid-cards">
+        <button onclick="openMaterial(1)" class="mat-card mat-1">
+          <div class="mat-icon">⭐️</div>
+          <h3>Sila 1</h3>
+          <p>Ketuhanan Yang Maha Esa</p>
+        </button>
+        <button onclick="openMaterial(2)" class="mat-card mat-2">
+          <div class="mat-icon">🔗</div>
+          <h3>Sila 2</h3>
+          <p>Kemanusiaan yang Adil dan Beradab</p>
+        </button>
+        <button onclick="openMaterial(3)" class="mat-card mat-3">
+          <div class="mat-icon">🌳</div>
+          <h3>Sila 3</h3>
+          <p>Persatuan Indonesia</p>
+        </button>
+        <button onclick="openMaterial(4)" class="mat-card mat-4">
+          <div class="mat-icon">🐂</div>
+          <h3>Sila 4</h3>
+          <p>Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan...</p>
+        </button>
+        <button onclick="openMaterial(5)" class="mat-card mat-5">
+          <div class="mat-icon">🌾</div>
+          <h3>Sila 5</h3>
+          <p>Keadilan Sosial bagi Seluruh Rakyat Indonesia</p>
+        </button>
+      </div>
+
+      <!-- Detail Modal / Container Materi -->
+      <div id="materialDetail" class="detail-box hidden">
+        <h3 id="matTitle">Judul Sila</h3>
+        <div id="matContent"></div>
+        
+        <div class="reflection-box">
+          <h4>🤔 Pertanyaan Refleksi:</h4>
+          <p id="matReflection"></p>
+        </div>
+
+        <div class="btn-group">
+          <button onclick="markUnderstood()" class="btn btn-success">✅ Saya Sudah Paham</button>
+          <button onclick="closeMaterial()" class="btn btn-secondary">⬅️ Kembali ke Menu Sila</button>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button onclick="navigateTo('sec-activity1')" class="btn btn-primary btn-block">Lanjut ke Aktivitas 1: Tebak Sila ➔</button>
+      </div>
+    </section>
+
+    <!-- 4. AKTIVITAS 1: TEBAK SILA -->
+    <section id="sec-activity1" class="card hidden">
+      <h2>🎮 Aktivitas 1: Tebak Sila</h2>
+      <p>Pilihlah sila yang sesuai dengan situasi berikut!</p>
+      
+      <div class="progress-bar-container">
+        <div id="pBar1" class="progress-bar" style="width: 10%;"></div>
+      </div>
+
+      <div id="guessBox" class="quiz-container">
+        <div class="question-number" id="guessNum">Soal 1 dari 10</div>
+        <div class="question-text" id="guessText">Situasi...</div>
+        
+        <div class="options-grid" id="guessOptions">
+          <!-- Button Options Handled by JS -->
+        </div>
+
+        <div id="guessFeedback" class="feedback-box hidden"></div>
+        <button id="btnNextGuess" onclick="nextGuess()" class="btn btn-primary hidden">Soal Berikutnya ➔</button>
+      </div>
+    </section>
+
+    <!-- 5. AKTIVITAS 2: PILIH SIKAP YANG TEPAT -->
+    <section id="sec-activity2" class="card hidden">
+      <h2>⚖️ Aktivitas 2: Pilih Sikap yang Tepat</h2>
+      <p>Analisislah situasi berikut dan tentukan keputusan terbaikmu!</p>
+
+      <div id="attitudeBox" class="quiz-container">
+        <div class="question-number" id="attNum">Situasi 1 dari 5</div>
+        <div class="question-text" id="attText">Situasi...</div>
+
+        <div class="options-vertical" id="attOptions"></div>
+
+        <div id="attFeedback" class="feedback-box hidden"></div>
+        <button id="btnNextAtt" onclick="nextAttitude()" class="btn btn-primary hidden">Situasi Berikutnya ➔</button>
+      </div>
+    </section>
+
+    <!-- 6. PERMAINAN: PANCASILA CHALLENGE -->
+    <section id="sec-challenge" class="card hidden">
+      <h2>🏆 Permainan: Pancasila Challenge</h2>
+      <p>Uji pemahaman menyeluruhmu dalam kuis 20 soal pilihan ganda!</p>
+
+      <div id="challengeStart">
+        <p>Setiap jawaban benar bernilai <strong>10 poin</strong>. Siapkan dirimu!</p>
+        <button onclick="startChallenge()" class="btn btn-danger btn-block">🔥 Mulai Pancasila Challenge</button>
+      </div>
+
+      <div id="challengeBox" class="quiz-container hidden">
+        <div class="quiz-header">
+          <span class="question-number" id="challNum">Soal 1/20</span>
+          <span class="score-badge">Skor: <strong id="challScore">0</strong></span>
+        </div>
+
+        <div class="question-text" id="challText">Soal...</div>
+        <div class="options-vertical" id="challOptions"></div>
+
+        <div id="challFeedback" class="feedback-box hidden"></div>
+        <button id="btnNextChall" onclick="nextChallenge()" class="btn btn-primary hidden">Soal Berikutnya ➔</button>
+      </div>
+
+      <div id="challengeResult" class="result-box hidden">
+        <h3>🎉 Hasil Pancasila Challenge</h3>
+        <div class="score-big" id="finalScoreDisplay">0</div>
+        <p id="categoryDisplay">Kategori: -</p>
+        <p id="detailResultDisplay">Benar: 0 | Salah: 0</p>
+        <button onclick="navigateTo('sec-case')" class="btn btn-success btn-block">Lanjut ke Studi Kasus ➔</button>
+      </div>
+    </section>
+
+    <!-- 7. AKTIVITAS STUDI KASUS -->
+    <section id="sec-case" class="card hidden">
+      <h2>🕵️‍♂️ Aktivitas 4: Studi Kasus Nyata</h2>
+      <p>Bacalah kasus di bawah ini, lalu berikan analisis dan solusimu!</p>
+
+      <div id="caseBox" class="quiz-container">
+        <div class="question-number" id="caseNum">Kasus 1 dari 5</div>
+        <div class="case-text" id="caseText">Deskripsi kasus...</div>
+        
+        <form onsubmit="submitCaseAnswer(event)">
+          <label><strong>1. Apakah perilaku tersebut sesuai dengan Pancasila? Jelaskan alasanmu!</strong></label>
+          <textarea id="caseAns1" class="input-field" rows="3" required></textarea>
+
+          <label><strong>2. Sila ke berapa yang berkaitan dan tindakan apa yang seharusnya dilakukan?</strong></label>
+          <textarea id="caseAns2" class="input-field" rows="3" required></textarea>
+
+          <button type="submit" class="btn btn-primary btn-block">Simpan Jawaban Kasus Ini</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 8. REFLEKSI DIRI & KOMITMEN -->
+    <section id="sec-reflection" class="card hidden">
+      <h2>📝 Refleksi Diri & Komitmen</h2>
+      <p>Berilah tanda centang pada pernyataan yang sudah kamu terapkan:</p>
+
+      <div class="checklist-group">
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya menghargai teman yang sedang beribadah.</label>
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya tidak membeda-bedakan teman berdasarkan suku/agama.</label>
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya mengutamakan musyawarah saat berdiskusi kelompok.</label>
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya siap membantu teman atau tetangga yang kesulitan.</label>
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya menjaga persatuan dan kebersihan di lingkungan sekolah.</label>
+        <label class="check-item"><input type="checkbox" class="ref-check"> Saya berlaku adil dan menghormati hak milik orang lain.</label>
+      </div>
+
+      <div class="form-group">
+        <label for="commitmentText"><strong>✍️ Komitmen Saya Setelah Mempelajari Materi Ini:</strong></label>
+        <textarea id="commitmentText" class="input-field" rows="4" placeholder="Tuliskan komitmen manisfestasi Pancasila dalam kehidupan sehari-harimu..."></textarea>
+      </div>
+
+      <button onclick="finishAllProcess()" class="btn btn-success btn-block">Selesaikan & Kirim Nilai ke Guru 📤</button>
+    </section>
+
+    <!-- 9. REKAPITULASI & AKSI KHUSUS GURU/SISWA -->
+    <section id="sec-finish" class="card hidden text-center">
+      <h2>🎊 Pembelajaran Selesai!</h2>
+      <p>Terima kasih telah belajar Pancasila dengan bersungguh-sungguh.</p>
+      
+      <div id="submitStatus" class="status-box">Menyiapkan pengiriman nilai...</div>
+
+      <div class="btn-stack">
+        <!-- Placeholder GOOGLE_DOCS_URL -->
+        <a id="lkpdLink" href="https://docs.google.com/document/d/1_SAMPLE_LKPD_ID/edit" target="_blank" class="btn btn-primary btn-block">📄 Buka LKPD Digital (Google Docs)</a>
+        
+        <!-- Placeholder GOOGLE_SHEET_URL -->
+        <a id="dashLink" href="https://docs.google.com/spreadsheets/d/1_SAMPLE_SHEET_ID/edit" target="_blank" class="btn btn-secondary btn-block">📊 Dashboard Guru (Google Sheets)</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
